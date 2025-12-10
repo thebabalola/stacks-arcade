@@ -139,7 +139,11 @@
           (ok {result: result, winner: winner}))))
     err-not-found))
 (define-public (claim)
-  (ok true))
+  (let
+    (
+      (amount (default-to u0 (get amount (map-get? balances {player: tx-sender}))))
+    )
+    (ok true)))
 
 ;; read only functions
 ;;
