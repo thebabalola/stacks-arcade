@@ -138,6 +138,8 @@
             (ok true))
           (ok {result: result, winner: winner}))))
     err-not-found))
+(define-public (claim)
+  (ok true))
 
 ;; read only functions
 ;;
