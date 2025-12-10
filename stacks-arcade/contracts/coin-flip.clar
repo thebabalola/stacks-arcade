@@ -57,6 +57,25 @@
 
 ;; public functions
 ;;
+(define-public (create-game (wager uint) (pick uint))
+  (let
+    (
+      (game-id (var-get next-game-id))
+    )
+    (begin
+      (map-set games
+        {id: game-id}
+        {
+          player: tx-sender,
+          wager: wager,
+          pick: pick,
+          funded: false,
+          status: status-open,
+          result: none,
+          winner: false
+        })
+      (var-set next-game-id (+ game-id u1))
+      (ok game-id))))
 
 ;; read only functions
 ;;
