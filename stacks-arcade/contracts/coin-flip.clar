@@ -118,7 +118,7 @@
     (begin
       (asserts! (is-open? (get status game)) err-not-open)
       (asserts! (get funded game) err-not-funded)
-      (asserts! (is-eq tx-sender (get player game)) err-not-player)
+      (assert-player (get player game))
       (let
         (
           (result (mod (block-height) u2))
