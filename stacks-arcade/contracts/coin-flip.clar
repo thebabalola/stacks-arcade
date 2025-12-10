@@ -63,6 +63,9 @@
       (game-id (var-get next-game-id))
     )
     (begin
+      (asserts! (>= wager min-bet) err-insufficient-bet)
+      (asserts! (<= wager max-bet) err-too-high-bet)
+      (asserts! (or (is-eq pick u0) (is-eq pick u1)) err-invalid-pick)
       (map-set games
         {id: game-id}
         {
