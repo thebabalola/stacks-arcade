@@ -158,6 +158,20 @@ describe("coin-flip", () => {
     expect(result).toBeErr();
   });
 
+  it("returns flip result with winner flag", () => {
+    const startHeight = BigInt(simnet.blockHeight);
+    const winningPick = (startHeight + 3n) % 2n;
+    create(1_000_000n, winningPick);
+    fund(0n);
+    const { result } = flip(0n);
+    expect(result).toBeOk();
+    const outcome = simnet.callReadOnlyFn("coin-flip", "get-result", [simnet.uint(0)], address1);
+    expect(outcome.result).toBeTuple({
+      result: simnet.someUint((startHeight + 3n) % 2n),
+      winner: simnet.bool(true),
+    });
+  });
+
   it("rejects zero claims", () => {
     const { result } = claim();
     expect(result).toBeErr();
