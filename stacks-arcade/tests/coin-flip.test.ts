@@ -33,12 +33,7 @@ describe("coin-flip", () => {
   });
 
   it("rejects invalid picks", () => {
-    const { result } = simnet.callPublicFn(
-      "coin-flip",
-      "create-game",
-      [simnet.uint(1_000_000n), simnet.uint(2)],
-      address1
-    );
+    const { result } = create(1_000_000n, 2n);
     expect(result).toBeErr();
   });
 
