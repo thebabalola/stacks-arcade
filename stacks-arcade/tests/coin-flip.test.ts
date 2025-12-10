@@ -101,6 +101,17 @@ describe("coin-flip", () => {
     expect(result).toBeErr();
   });
 
+  it("credits balance when guess wins", () => {
+    const startHeight = BigInt(simnet.blockHeight);
+    const winningPick = (startHeight + 3n) % 2n;
+    create(1_000_000n, winningPick);
+    fund(0n);
+    const { result } = flip(0n);
+    expect(result).toBeOk();
+    const balance = getBalance();
+    expect(balance.result).toBeUint(2_000_000n);
+  });
+
   // it("shows an example", () => {
   //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
   //   expect(result).toBeUint(0);
