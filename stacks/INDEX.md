@@ -1,6 +1,6 @@
 # Stacks Docs Index (Quick Links)
 
-Start with these curated files in `stacks_essentials/` for common tasks. Use `stacks/AGENTS.md` for navigation rules and search tips.
+Start with these curated files in `stacks_essentials/` for common tasks.
 
 ## Clarity Basics
 - [`031_clarity.md`](stacks_essentials/031_clarity.md) — language overview
