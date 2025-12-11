@@ -124,10 +124,12 @@
       (unwrap! (assert-player (get player game)) err-not-player)
       (let
         (
-          (result (mod stacks-block-height u2))
+          ;; Mix block height and block time to avoid trivial even/odd parity on height alone.
+          (result (mod (+ stacks-block-height stacks-block-time) u2))
           (winner (is-eq result (get pick game)))
           (player (get player game))
           (wager (get wager game))
+          (winner-ascii (unwrap-panic (to-ascii? winner)))
         )
         (let
           (
@@ -135,7 +137,7 @@
             (updated (merge game {status: status-settled, result: (some result), winner: winner}))
           )
           (map-set games {id: (get id game)} updated)
-          (print {event: "flip", id: game-id, player: tx-sender, result: result, winner: winner, payout: payout})
+          (print {event: "flip", id: game-id, player: tx-sender, result: result, winner: winner, winner-ascii: winner-ascii, payout: payout})
           (if (> payout u0)
             (let
               (
