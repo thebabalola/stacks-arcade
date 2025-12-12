@@ -17,7 +17,7 @@ Single-player coin flip where a wallet chooses heads/tails (`u0`/`u1`), escrows 
 ## Events (print)
 - `create`: id, player, wager, pick
 - `fund`: id, player, wager
-- `flip`: id, player, result, winner, payout
+- `flip`: id, player, result, winner, winner-ascii, payout
 - `cancel`: id, player
 - `claim`: player, amount
 
