@@ -27,7 +27,7 @@ Single-player coin flip where a wallet chooses heads/tails (`u0`/`u1`), escrows 
 - `err-zero-claim`, `err-transfer-failed`, `err-not-found`
 
 ## Notes & Limitations
-- Randomness uses predictable block-height parity; acceptable for demos but not for real wagering. For production, replace with verifiable randomness or multi-party commit-reveal.
+- Randomness uses a mix of block-height and block-time (mod 2), which is still predictable and not suitable for production wagering. For production, replace with verifiable randomness or multi-party commit-reveal.
 - Payouts accrue in `balances` and require `claim`. No fees are taken (`fee-bps = 0`).
 - Max bet (`max-bet`) caps exposure; min bet (`min-bet`) blocks dust.
 
