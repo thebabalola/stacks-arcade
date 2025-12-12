@@ -5,7 +5,7 @@ Single-player coin flip where a wallet chooses heads/tails (`u0`/`u1`), escrows 
 ## Core Flow
 - Create game: `create-game (wager uint) (pick uint)` → returns game id. Validates `min-bet <= wager <= max-bet` and `pick` is `u0` or `u1`.
 - Fund: `fund-game (game-id uint)` → player transfers the wager to contract and marks game funded.
-- Flip: `flip (game-id uint)` → only player; requires funded/open. Result is `block-height mod 2`; winner if equals pick. Pays `wager * 2` to player’s internal balance when they win.
+- Flip: `flip (game-id uint)` → only player; requires funded/open. Result is `(block-height + block-time) mod 2`; winner if equals pick. Pays `wager * 2` to player's internal balance when they win.
 - Claim: `claim` → withdraws accumulated owed balance to caller.
 - Cancel: `cancel-game (game-id uint)` → only before funding; marks canceled.
 
